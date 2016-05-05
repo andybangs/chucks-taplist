@@ -1,0 +1,14 @@
+{
+  "name": "tap-list",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Andy Bangs <andrew.yuta@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "x-ray": "^2.3.0"
+  }
+}
