@@ -1,24 +1,15 @@
-'use strict';
-
 const Xray = require('x-ray');
 
 module.exports = function fetchList(url) {
   return new Promise((resolve, reject) => {
     const xray = new Xray();
 
-    xray(url, 'li',
-      [{
-        li: '',
-        class: '@class',
-      }]
-    )
-    (function(err, results){
+    xray(url, 'li', [{ li: '', class: '@class' }])((err, results) => {
       if (err) reject(err);
 
-      results = results
-        .filter(result => {
-          return result.li.trim() && result.class.indexOf('header') === -1;
-        })
+      const json = results
+        .filter(result => result.li.trim() &&
+          result.class.indexOf('header') === -1)
         .map(result => {
           const beer = result.li.split('\n')
             .map(item => item.trim())
@@ -33,11 +24,11 @@ module.exports = function fetchList(url) {
             growler: beer[3],
             pint: beer[4],
             abv: parseFloat(beer[5]),
-            classes
-          }
+            classes,
+          };
         });
 
-        resolve(JSON.stringify(results, null, '\t'))
+      resolve(JSON.stringify(json, null, '\t'));
     });
   });
-}
+};
