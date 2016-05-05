@@ -8,14 +8,21 @@ const port = process.env.PORT || 8080;
 
 app.use(express.static(`${__dirname}/public`));
 
-app.get('/api/beers', (req, res) => {
+app.get('/api/85th/beers', (req, res) => {
   fetchChucksList('http://chucks85th.com/')
     .then((json) => {
       res.send(json);
     });
 });
 
-app.get('/', (req, res) => {
+app.get('/api/cd/beers', (req, res) => {
+  fetchChucksList('http://cd.chucks85th.com/')
+    .then((json) => {
+      res.send(json);
+    });
+});
+
+app.get('*', (req, res) => {
   res.sendfile('./public/index.html');
 });
 

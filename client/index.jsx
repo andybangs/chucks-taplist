@@ -2,6 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Main from './components/Main';
 
+const locations = {
+  GW: '/api/85th/beers',
+  CD: '/api/cd/beers',
+};
+
 const filters = {
   ALL: 'all',
   IPA: 'ipa',
@@ -19,6 +24,6 @@ const orders = {
 };
 
 ReactDOM.render(
-  <Main source="/api/beers" filters={filters} orders={orders} />,
+  <Main locations={locations} filters={filters} orders={orders} />,
   document.getElementById('app')
 );

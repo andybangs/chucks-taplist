@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 
 const propTypes = {
-  source: PropTypes.string.isRequired,
+  locations: PropTypes.string.isRequired,
   filters: PropTypes.object.isRequired,
   orders: PropTypes.object.isRequired,
 };
@@ -12,6 +12,7 @@ class Main extends React.Component {
 
     this.state = {
       data: [],
+      location: this.props.locations.GW,
       filter: this.props.filters.ALL,
       order: this.props.orders.TAP,
     };
@@ -23,7 +24,7 @@ class Main extends React.Component {
   }
 
   componentDidMount() {
-    fetch(new Request(this.props.source))
+    fetch(new Request(this.state.location))
       .then(response => {
         if (response.ok) {
           response.json().then(json => {
