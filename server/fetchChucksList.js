@@ -9,7 +9,9 @@ module.exports = function fetchList(url) {
 
       const json = results
         .filter(result => result.li.trim() &&
-          result.class.indexOf('header') === -1)
+          result.class.indexOf('header') === -1 &&
+          result.li.indexOf('IPA FLIGHT') === -1 &&
+          result.li.indexOf('CIDER FLIGHT') === -1)
         .map(result => {
           const beer = result.li.split('\n')
             .map(item => item.trim())
