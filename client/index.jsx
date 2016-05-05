@@ -12,7 +12,13 @@ const filters = {
   OTHER: 'other',
 };
 
+const orders = {
+  TAP: 'tap no.',
+  PRICE: 'price',
+  ABV: 'abv',
+};
+
 ReactDOM.render(
-  <Main source="/api/beers" filters={filters} />,
+  <Main source="/api/beers" filters={filters} orders={orders} />,
   document.getElementById('app')
 );
