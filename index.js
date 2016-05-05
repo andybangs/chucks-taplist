@@ -1,20 +1,22 @@
 /* eslint no-console: 0 */
 
 const express = require('express');
-const fetchList = require('./fetchList');
+const fetchChucksList = require('./server/fetchChucksList');
 
 const app = express();
 const port = process.env.PORT || 8080;
 
+app.use(express.static(`${__dirname}/public`));
+
 app.get('/api/beers', (req, res) => {
-  fetchList('http://chucks85th.com/')
+  fetchChucksList('http://chucks85th.com/')
     .then((json) => {
       res.send(json);
     });
 });
 
-app.get('*', (req, res) => {
-  res.sendfile('./index.html');
+app.get('/', (req, res) => {
+  res.sendfile('./public/index.html');
 });
 
 app.listen(port);
