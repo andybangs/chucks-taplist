@@ -58,15 +58,16 @@ class TapList extends React.Component {
   }
 
   compareItems(a, b) {
-    const { order } = this.state;
-
-    if (order === orders.PRICE) {
-      return parseFloat(a.pint.slice(1)) - parseFloat(b.pint.slice(1));
+    switch (this.state.order) {
+      case orders.BREWERY:
+        return a.brewery.toLowerCase() < b.brewery.toLowerCase() ? -1 : 1;
+      case orders.PRICE:
+        return parseFloat(a.pint.slice(1)) - parseFloat(b.pint.slice(1));
+      case orders.ABV:
+        return a.abv - b.abv;
+      default:
+        return a.tap - b.tap;
     }
-
-    if (order === orders.ABV) return a.abv - b.abv;
-
-    return a.tap - b.tap;
   }
 
   handleFilterSelect(event) {

@@ -10,6 +10,7 @@ export const filters = {
 
 export const orders = {
   TAP: 'tap no.',
+  BREWERY: 'brewery',
   PRICE: 'price',
   ABV: 'abv',
 };
