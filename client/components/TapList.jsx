@@ -20,6 +20,7 @@ class TapList extends React.Component {
     this.compareItems = this.compareItems.bind(this);
     this.handleFilterSelect = this.handleFilterSelect.bind(this);
     this.handleOrderSelect = this.handleOrderSelect.bind(this);
+    this.handleResetClick = this.handleResetClick.bind(this);
   }
 
   componentDidMount() {
@@ -76,6 +77,10 @@ class TapList extends React.Component {
     this.setState({ order: event.target.value });
   }
 
+  handleResetClick() {
+    this.setState({ filter: filters.ALL, order: orders.TAP });
+  }
+
   render() {
     const { data, filter, order } = this.state;
     const filtersArr = Object.keys(filters).map(key => filters[key]);
@@ -103,6 +108,7 @@ class TapList extends React.Component {
         <select name="order" value={order} onChange={this.handleOrderSelect}>
           {orderArr.map(createOption)}
         </select>
+        <button onClick={this.handleResetClick}>Reset</button>
         <ul>
           {data.filter(this.filterItem).sort(this.compareItems).map(createItem)}
         </ul>
