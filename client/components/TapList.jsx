@@ -1,22 +1,21 @@
 import React, { PropTypes } from 'react';
+import { filters, orders, endpoints } from '../constants';
 
 const propTypes = {
-  locations: PropTypes.string.isRequired,
-  filters: PropTypes.object.isRequired,
-  orders: PropTypes.object.isRequired,
+  params: PropTypes.object.isRequired,
 };
 
-class Main extends React.Component {
+class TapList extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
       data: [],
-      location: this.props.locations.GW,
-      filter: this.props.filters.ALL,
-      order: this.props.orders.TAP,
+      filter: filters.ALL,
+      order: orders.TAP,
     };
 
+    this.fetchList = this.fetchList.bind(this);
     this.filterItem = this.filterItem.bind(this);
     this.compareItems = this.compareItems.bind(this);
     this.handleFilterSelect = this.handleFilterSelect.bind(this);
@@ -24,7 +23,15 @@ class Main extends React.Component {
   }
 
   componentDidMount() {
-    fetch(new Request(this.state.location))
+    this.fetchList(this.props.params.location);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.fetchList(nextProps.params.location);
+  }
+
+  fetchList(location) {
+    fetch(new Request(endpoints[location]))
       .then(response => {
         if (response.ok) {
           response.json().then(json => {
@@ -40,7 +47,6 @@ class Main extends React.Component {
   }
 
   filterItem(item) {
-    const { filters } = this.props;
     const { filter } = this.state;
 
     if (filter === filters.ALL) return true;
@@ -51,7 +57,6 @@ class Main extends React.Component {
   }
 
   compareItems(a, b) {
-    const { orders } = this.props;
     const { order } = this.state;
 
     if (order === orders.PRICE) {
@@ -72,7 +77,6 @@ class Main extends React.Component {
   }
 
   render() {
-    const { filters, orders } = this.props;
     const { data, filter, order } = this.state;
     const filtersArr = Object.keys(filters).map(key => filters[key]);
     const orderArr = Object.keys(orders).map(key => orders[key]);
@@ -91,7 +95,6 @@ class Main extends React.Component {
 
     return (
       <div>
-        <h2>Tap List</h2>
         <label htmlFor="styles">Styles: </label>
         <select name="styles" value={filter} onChange={this.handleFilterSelect}>
           {filtersArr.map(createOption)}
@@ -108,6 +111,6 @@ class Main extends React.Component {
   }
 }
 
-Main.propTypes = propTypes;
+TapList.propTypes = propTypes;
 
-export default Main;
+export default TapList;
