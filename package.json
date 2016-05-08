@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack -w",
+    "start": "webpack && node server.js",
+    "dev": "webpack -w | nodemon",
     "lint": "eslint **.js"
   },
   "author": "Andy Bangs <andrew.yuta@gmail.com>",
