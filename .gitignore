@@ -1,4 +1,12 @@
-/node_modules
+# Node.js
+node_modules/
 npm-debug.log
-.DS_Store
+
+# Compiled JS
 public/bundle.js
+
+# AWS
+.elasticbeanstalk/
+
+# OSX
+.DS_Store
