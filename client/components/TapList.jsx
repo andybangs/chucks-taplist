@@ -18,7 +18,8 @@ class TapList extends React.Component {
     this.fetchList = this.fetchList.bind(this);
     this.filterItem = this.filterItem.bind(this);
     this.compareItems = this.compareItems.bind(this);
-    this.handleFilterSelect = this.handleFilterSelect.bind(this);
+    this.handleFilterClick = this.handleFilterClick.bind(this);
+    this.createButton = this.createButton.bind(this);
     this.handleOrderSelect = this.handleOrderSelect.bind(this);
     this.handleResetClick = this.handleResetClick.bind(this);
   }
@@ -70,7 +71,7 @@ class TapList extends React.Component {
     }
   }
 
-  handleFilterSelect(event) {
+  handleFilterClick(event) {
     this.setState({ filter: event.target.value });
   }
 
@@ -80,6 +81,19 @@ class TapList extends React.Component {
 
   handleResetClick() {
     this.setState({ filter: filters.ALL, order: orders.TAP });
+  }
+
+  createButton(val) {
+    return (
+      <button
+        key={val}
+        value={val}
+        className={this.state.filter === val ? 'active' : null}
+        onClick={this.handleFilterClick}
+      >
+        {val}
+      </button>
+    );
   }
 
   render() {
@@ -101,10 +115,8 @@ class TapList extends React.Component {
 
     return (
       <div>
-        <label htmlFor="styles">Styles: </label>
-        <select name="styles" value={filter} onChange={this.handleFilterSelect}>
-          {filtersArr.map(createOption)}
-        </select>
+        <h3>{filter}</h3>
+        {filtersArr.map(this.createButton)}
         <label htmlFor="order">Sort by: </label>
         <select name="order" value={order} onChange={this.handleOrderSelect}>
           {orderArr.map(createOption)}

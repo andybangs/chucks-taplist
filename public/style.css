@@ -1,0 +1,11 @@
+button {
+  border: none;
+  color: white;
+  padding: 0.7em 1em;
+  text-align: center;
+  cursor: pointer;
+}
+
+.active {
+  background-color: #4181c4;
+}
