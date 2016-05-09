@@ -9,3 +9,11 @@ button {
 .active {
   background-color: #4181c4;
 }
+
+.order {
+  background-color: #41c46a;
+}
+
+.reset {
+  background-color: #626262;
+}
