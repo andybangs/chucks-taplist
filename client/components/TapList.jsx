@@ -105,9 +105,11 @@ class TapList extends React.Component {
     const filtersArr = Object.keys(filters).map(key => filters[key]);
 
     function createItem(item) {
+      const beerStyle = item.classes[1] ? item.classes[1] : 'other';
+
       return (
-        <li key={item.tap}>
-          {item.tap} - {item.brewery} | {item.beer} | {item.pint} | {item.abv}
+        <li key={item.tap} className={beerStyle}>
+          {item.tap} {item.brewery} | {item.beer} | {item.pint} | {item.abv}
         </li>
       );
     }
