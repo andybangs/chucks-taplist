@@ -1,4 +1,40 @@
+html, body {
+  background-color: #e9e9e9;
+  font-family: sans-serif;
+  color: #626262;
+}
+
+ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.ipa {
+  color: #41c46a;
+}
+
+.sour {
+  color: #d437ac;
+}
+
+.stout {
+  color: #7a5427;
+}
+
+.cider {
+  color: #ffc530;
+}
+
+.nitro {
+  color: #4181c4;
+}
+
+.other {
+  color: #626262;
+}
+
 button {
+  background-color: #ccc;
   border: none;
   color: white;
   padding: 0.7em 1em;
