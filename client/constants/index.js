@@ -4,7 +4,6 @@ export const filters = {
   SOUR: 'sour',
   STOUT: 'stout',
   CIDER: 'cider',
-  NITRO: 'nitro',
   OTHER: 'other',
 };
 

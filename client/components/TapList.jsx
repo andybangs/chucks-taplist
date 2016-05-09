@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import { filters, orders, endpoints } from '../constants';
 
+const filtersArr = Object.keys(filters).map(key => filters[key]);
 const ordersArr = Object.keys(orders).map(key => orders[key]);
 
 const propTypes = {
@@ -55,7 +56,10 @@ class TapList extends React.Component {
 
     if (filter === filters.ALL) return true;
     if (filter === item.classes[1]) return true;
-    if (filter === filters.OTHER && !item.classes[1]) return true;
+    if ((filter === filters.OTHER) &&
+      (!item.classes[1] ||
+        item.classes[1] && filtersArr.indexOf(item.classes[1]) === -1)
+      ) return true;
 
     return false;
   }
@@ -102,14 +106,15 @@ class TapList extends React.Component {
 
   render() {
     const { data, orderIndex } = this.state;
-    const filtersArr = Object.keys(filters).map(key => filters[key]);
 
     function createItem(item) {
-      const beerStyle = item.classes[1] ? item.classes[1] : 'other';
+      const filterClass = item.classes[1];
+      const validFilter = filtersArr.indexOf(filterClass) !== -1;
+      const beerStyle = filterClass && validFilter ? filterClass : 'other';
 
       return (
         <li key={item.tap} className={beerStyle}>
-          {item.tap} {item.brewery} | {item.beer} | {item.pint} | {item.abv}
+          {item.tap} {item.brewery} | {item.beer} | {item.pint} | {item.abv || 0}
         </li>
       );
     }
