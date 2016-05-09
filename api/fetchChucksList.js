@@ -7,7 +7,7 @@ module.exports = function fetchList(url) {
     xray(url, 'li', [{ li: '', class: '@class' }])((err, results) => {
       if (err) reject(err);
 
-      const json = results
+      const json = results && results
         .filter(result => result.li.trim() &&
           result.class.indexOf('header') === -1 &&
           result.li.indexOf('IPA FLIGHT') === -1 &&
