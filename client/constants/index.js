@@ -8,10 +8,10 @@ export const filters = {
 };
 
 export const orders = {
-  TAP: 'tap',
-  BREWERY: 'brewery',
-  PRICE: 'price',
-  ABV: 'abv',
+  TAP: '#',
+  BREWERY: 'abc',
+  PRICE: '$',
+  ABV: '%',
 };
 
 export const endpoints = {

@@ -1,5 +1,6 @@
 import 'whatwg-fetch';
 import React, { PropTypes } from 'react';
+import Header from './Header';
 import { filters, orders, endpoints } from '../constants';
 
 const filtersArr = Object.keys(filters).map(key => filters[key]);
@@ -130,12 +131,12 @@ class TapList extends React.Component {
 
     return (
       <div>
+        <Header handleResetClick={this.handleResetClick} />
         <div className="filterBtns">
           {filtersArr.map(this.createButton)}
           <button className="order" onClick={this.handleOrderClick}>
             {ordersArr[orderIndex]}
           </button>
-          <button className="reset" onClick={this.handleResetClick}>reset</button>
         </div>
         <table>
           <thead>

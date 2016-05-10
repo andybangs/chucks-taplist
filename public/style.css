@@ -6,8 +6,23 @@ html, body {
   color: #626262;
 }
 
+.header {
+  display: flex;
+}
+
+.flex-1 {
+  flex: 1;
+}
+
 .title {
+  flex: 5;
   text-align: center;
+}
+
+.reset {
+  flex: 1;
+  align-self: center;
+  cursor: pointer;
 }
 
 .ipa {
@@ -34,7 +49,7 @@ html, body {
   display: flex;
 }
 
-button {
+.filterBtns button {
   background-color: #ccc;
   border: none;
   color: white;
@@ -44,16 +59,12 @@ button {
   flex: 1;
 }
 
-.active {
+.filterBtns .active {
   background-color: #4181c4;
 }
 
-.order {
+.filterBtns .order {
   background-color: #41c46a;
-}
-
-.reset {
-  background-color: #626262;
 }
 
 table {

@@ -7,7 +7,6 @@ const propTypes = {
 function App(props) {
   return (
     <div>
-      <h2 className="title">Tap List</h2>
       {props.children}
     </div>
   );
