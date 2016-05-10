@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack && node server.js",
+    "prestart": "webpack",
+    "start": "node server.js",
     "dev": "webpack -w | nodemon server.js",
     "lint": "eslint **.js"
   },
