@@ -130,11 +130,13 @@ class TapList extends React.Component {
 
     return (
       <div>
-        {filtersArr.map(this.createButton)}
-        <button className="order" onClick={this.handleOrderClick}>
-          {ordersArr[orderIndex]}
-        </button>
-        <button className="reset" onClick={this.handleResetClick}>reset</button>
+        <div className="filterBtns">
+          {filtersArr.map(this.createButton)}
+          <button className="order" onClick={this.handleOrderClick}>
+            {ordersArr[orderIndex]}
+          </button>
+          <button className="reset" onClick={this.handleResetClick}>reset</button>
+        </div>
         <table>
           <thead>
             <tr>

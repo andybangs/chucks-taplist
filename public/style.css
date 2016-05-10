@@ -1,7 +1,13 @@
 html, body {
+  height: 100%;
+  width: 100%;
   background-color: #e9e9e9;
   font-family: sans-serif;
   color: #626262;
+}
+
+.title {
+  text-align: center;
 }
 
 .ipa {
@@ -24,6 +30,10 @@ html, body {
   color: #626262;
 }
 
+.filterBtns {
+  display: flex;
+}
+
 button {
   background-color: #ccc;
   border: none;
@@ -31,6 +41,7 @@ button {
   padding: 0.7em 1em;
   text-align: center;
   cursor: pointer;
+  flex: 1;
 }
 
 .active {
@@ -43,4 +54,12 @@ button {
 
 .reset {
   background-color: #626262;
+}
+
+table {
+  width: 100%;
+}
+
+th {
+  text-align: left;
 }
