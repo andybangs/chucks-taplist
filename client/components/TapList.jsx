@@ -1,3 +1,4 @@
+import 'whatwg-fetch';
 import React, { PropTypes } from 'react';
 import { filters, orders, endpoints } from '../constants';
 
