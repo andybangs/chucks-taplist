@@ -14,10 +14,6 @@ module.exports = {
         NODE_ENV: JSON.stringify('production'),
       },
     }),
-    new webpack.ProvidePlugin({
-      Promise: 'es6-promise',
-      fetch: 'imports?this=>global!exports?global.fetch!whatwg-fetch',
-    }),
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.optimize.UglifyJsPlugin(),
