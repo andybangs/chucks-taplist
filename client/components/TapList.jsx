@@ -110,15 +110,19 @@ class TapList extends React.Component {
     const beerStyle = filterClass && validFilter ? filterClass : 'other';
 
     return (
-      <li key={item.tap} className={beerStyle}>
-        {item.tap} {item.brewery} | {item.beer} | {item.pint} | {item.abv || 0}
-      </li>
+      <tr key={item.tap} className={beerStyle}>
+        <td>{item.tap}</td>
+        <td>{item.brewery}</td>
+        <td>{item.beer}</td>
+        <td>{item.pint}</td>
+        <td>{item.abv || 0}</td>
+      </tr>
     );
   }
 
   render() {
     const { data, orderIndex } = this.state;
-    const listItems = data
+    const tableRows = data
       .filter(this.filterItem)
       .sort(this.compareItems)
       .map(this.createItem);
@@ -130,9 +134,20 @@ class TapList extends React.Component {
           {ordersArr[orderIndex]}
         </button>
         <button className="reset" onClick={this.handleResetClick}>reset</button>
-        <ul>
-          {listItems}
-        </ul>
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>brewery</th>
+              <th>beer</th>
+              <th>pint</th>
+              <th>abv</th>
+            </tr>
+          </thead>
+          <tbody>
+            {tableRows}
+          </tbody>
+        </table>
       </div>
     );
   }
