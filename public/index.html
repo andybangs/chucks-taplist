@@ -9,21 +9,6 @@
   <title>Tap List</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.2/css/font-awesome.min.css">
   <link rel="stylesheet" href="style.css">
-  <script>
-    var firstMove;
-
-    window.addEventListener('touchstart', function (e) {
-        firstMove = true;
-    });
-
-    window.addEventListener('touchmove', function (e) {
-        if (firstMove) {
-            e.preventDefault();
-
-            firstMove = false;
-        }
-    });
-  </script>
 </head>
 <body>
   <div id="app" class="scroll"></div>
