@@ -141,11 +141,11 @@ class TapList extends React.Component {
         <table>
           <thead>
             <tr>
-              <th>#</th>
-              <th>brewery</th>
-              <th>beer</th>
-              <th>pint</th>
-              <th>abv</th>
+              <th className="tap">#</th>
+              <th className="brewery">brewery</th>
+              <th className="beer">beer</th>
+              <th className="pint">pint</th>
+              <th className="abv">abv</th>
             </tr>
           </thead>
           <tbody>

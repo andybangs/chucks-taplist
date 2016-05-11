@@ -1,9 +1,14 @@
 html, body {
   height: 100%;
   width: 100%;
-  background-color: #e9e9e9;
-  font-family: sans-serif;
+  background-color: #eeeeee;
+  font-family: Verdana, sans-serif;
   color: #626262;
+}
+
+h2 {
+  font-size: 1.5em;
+  padding: 15px 0;
 }
 
 .header {
@@ -53,6 +58,7 @@ html, body {
   background-color: #ccc;
   border: none;
   color: white;
+  font-size: 0.8em;
   padding: 0.7em 1em;
   text-align: center;
   cursor: pointer;
@@ -69,8 +75,35 @@ html, body {
 
 table {
   width: 100%;
+  table-layout: fixed;
 }
 
 th {
   text-align: left;
+  font-weight: bold;
+  padding: 5px 0px;
+}
+
+.tap {
+  width: 10%
+}
+
+.brewery {
+  width: 32%
+}
+
+.beer {
+  width: 32%
+}
+
+.pint {
+  width: 14%
+}
+
+.abv {
+  width: 12%
+}
+
+td {
+  padding: 5px 2px;
 }
