@@ -134,8 +134,10 @@ class TapList extends React.Component {
         <Header handleResetClick={this.handleResetClick} />
         <div className="filterBtns">
           {filtersArr.map(this.createButton)}
+        </div>
+        <div className="sortBtnCont">
           <button className="order" onClick={this.handleOrderClick}>
-            {ordersArr[orderIndex]}
+            Sort by: {ordersArr[orderIndex]}
           </button>
         </div>
         <table>

@@ -2,12 +2,13 @@ html, body {
   height: 100%;
   width: 100%;
   background-color: #eeeeee;
-  font-family: Verdana, sans-serif;
+  font-family: 'Roboto', sans-serif;
   color: #626262;
 }
 
 h2 {
-  font-size: 1.5em;
+  font-family: 'Norican', cursive;
+  font-size: 1.8em;
   padding: 15px 0;
 }
 
@@ -54,9 +55,14 @@ h2 {
   display: flex;
 }
 
-.filterBtns button {
+.sortBtnCont {
+  display: flex;
+}
+
+button {
   background-color: #ccc;
   border: none;
+  outline: none;
   color: white;
   font-size: 0.8em;
   padding: 0.7em 1em;
@@ -69,7 +75,7 @@ h2 {
   background-color: #4181c4;
 }
 
-.filterBtns .order {
+.sortBtnCont .order {
   background-color: #41c46a;
 }
 
@@ -81,7 +87,7 @@ table {
 th {
   text-align: left;
   font-weight: bold;
-  padding: 5px 0px;
+  padding: 10px 0px;
 }
 
 .tap {
@@ -102,6 +108,10 @@ th {
 
 .abv {
   width: 12%
+}
+
+tr {
+  height: 2.5em;
 }
 
 td {
