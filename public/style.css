@@ -1,119 +1,26 @@
-html, body {
-  height: 100%;
-  width: 100%;
-  background-color: #eeeeee;
+html {
   font-family: 'Roboto', sans-serif;
-  color: #626262;
 }
 
-h2 {
+body {
+  margin: 0;
+}
+
+h1 {
   font-family: 'Norican', cursive;
-  font-size: 1.8em;
-  padding: 15px 0;
 }
 
-.header {
-  display: flex;
-}
-
-.flex-1 {
-  flex: 1;
-}
-
-.title {
-  flex: 5;
-  text-align: center;
-}
-
-.reset {
-  flex: 1;
-  align-self: center;
-  cursor: pointer;
-}
-
-.ipa {
-  color: #41c46a;
-}
-
-.sour {
-  color: #d437ac;
-}
-
-.stout {
-  color: #7a5427;
-}
-
-.cider {
-  color: #ffc530;
-}
-
-.other {
-  color: #626262;
-}
-
-.filterBtns {
-  display: flex;
-}
-
-.sortBtnCont {
-  display: flex;
-}
+/* Material-UI Overrides */
 
 button {
-  background-color: #ccc;
-  border: none;
-  outline: none;
-  color: white;
-  font-size: 0.8em;
-  padding: 0.7em 1em;
-  text-align: center;
-  cursor: pointer;
-  flex: 1;
+  min-width: 100% !important;
 }
 
-.filterBtns .active {
-  background-color: #4181c4;
+button span {
+  padding: 0 2% !important;
 }
 
-.sortBtnCont .order {
-  background-color: #41c46a;
-}
-
-table {
-  width: 100%;
-  table-layout: fixed;
-}
-
-th {
-  text-align: left;
-  font-weight: bold;
-  padding: 10px 0px;
-}
-
-.tap {
-  width: 10%
-}
-
-.brewery {
-  width: 32%
-}
-
-.beer {
-  width: 32%
-}
-
-.pint {
-  width: 14%
-}
-
-.abv {
-  width: 12%
-}
-
-tr {
-  height: 2.5em;
-}
-
-td {
-  padding: 5px 2px;
+th, td {
+  padding-left: 8px !important;
+  padding-right: 0 !important;
 }

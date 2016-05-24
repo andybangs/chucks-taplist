@@ -1,4 +1,6 @@
 import React, { PropTypes } from 'react';
+import AppBar from 'material-ui/AppBar';
+import FlatButton from 'material-ui/FlatButton';
 
 const propTypes = {
   handleResetClick: PropTypes.func.isRequired,
@@ -6,13 +8,13 @@ const propTypes = {
 
 function Header(props) {
   return (
-    <div className="header">
-      <div className="flex-1"></div>
-      <h2 className="title">Taplist</h2>
-      <div className="reset" onClick={props.handleResetClick}>
-        <i className="fa fa-refresh" ></i>
-      </div>
-    </div>
+    <AppBar
+      title="Taplist"
+      iconElementLeft={<span></span>}
+      iconElementRight={
+        <FlatButton label="Reset" onTouchTap={props.handleResetClick} />
+      }
+    />
   );
 }
 

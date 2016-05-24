@@ -1,5 +1,11 @@
 import 'whatwg-fetch';
 import React, { PropTypes } from 'react';
+
+import RaisedButton from 'material-ui/RaisedButton';
+import FlatButton from 'material-ui/FlatButton';
+import { Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn }
+  from 'material-ui/Table';
+
 import Header from './Header';
 import { filters, orders, endpoints } from '../constants';
 
@@ -80,7 +86,10 @@ class TapList extends React.Component {
   }
 
   handleFilterClick(event) {
-    this.setState({ filter: event.target.value });
+    const target = event.target.innerHTML ||
+      event.target.parentNode.nextSibling.children[0].innerHTML;
+
+    this.setState({ filter: target });
   }
 
   handleOrderClick() {
@@ -95,14 +104,13 @@ class TapList extends React.Component {
 
   createButton(val) {
     return (
-      <button
+      <RaisedButton
         key={val}
-        value={val}
-        className={this.state.filter === val ? 'active' : null}
-        onClick={this.handleFilterClick}
-      >
-        {val}
-      </button>
+        label={val}
+        secondary={this.state.filter === val}
+        onTouchTap={this.handleFilterClick}
+        style={styles.filterBtn}
+      />
     );
   }
 
@@ -112,13 +120,13 @@ class TapList extends React.Component {
     const beerStyle = filterClass && validFilter ? filterClass : 'other';
 
     return (
-      <tr key={item.tap} className={beerStyle}>
-        <td>{item.tap}</td>
-        <td>{item.brewery}</td>
-        <td>{item.beer}</td>
-        <td>{item.pint}</td>
-        <td>{item.abv || 0}</td>
-      </tr>
+      <TableRow key={item.tap}>
+        <TableRowColumn style={styles[beerStyle]}>{item.tap}</TableRowColumn>
+        <TableRowColumn style={styles[beerStyle]}>{item.brewery}</TableRowColumn>
+        <TableRowColumn style={styles[beerStyle]}>{item.beer}</TableRowColumn>
+        <TableRowColumn style={styles[beerStyle]}>{item.pint}</TableRowColumn>
+        <TableRowColumn style={styles[beerStyle]}>{item.abv || 0}</TableRowColumn>
+      </TableRow>
     );
   }
 
@@ -132,32 +140,65 @@ class TapList extends React.Component {
     return (
       <div>
         <Header handleResetClick={this.handleResetClick} />
-        <div className="filterBtns">
+
+        <div style={styles.filterBtnsCont}>
           {filtersArr.map(this.createButton)}
         </div>
-        <div className="sortBtnCont">
-          <button className="order" onClick={this.handleOrderClick}>
-            Sort by: {ordersArr[orderIndex]}
-          </button>
-        </div>
-        <table>
-          <thead>
-            <tr>
-              <th className="tap">#</th>
-              <th className="brewery">brewery</th>
-              <th className="beer">beer</th>
-              <th className="pint">pint</th>
-              <th className="abv">abv</th>
-            </tr>
-          </thead>
-          <tbody>
+
+        <FlatButton onTouchTap={this.handleOrderClick} style={styles.orderBtn}>
+          Sort by: {ordersArr[orderIndex]}
+        </FlatButton>
+
+        <Table>
+          <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
+            <TableRow>
+              <TableHeaderColumn>#</TableHeaderColumn>
+              <TableHeaderColumn>brewery</TableHeaderColumn>
+              <TableHeaderColumn>beer</TableHeaderColumn>
+              <TableHeaderColumn>pint</TableHeaderColumn>
+              <TableHeaderColumn>abv</TableHeaderColumn>
+            </TableRow>
+          </TableHeader>
+          <TableBody displayRowCheckbox={false}>
             {tableRows}
-          </tbody>
-        </table>
+          </TableBody>
+        </Table>
       </div>
     );
   }
 }
+
+/* eslint no-use-before-define: 0 */
+const styles = {
+  filterBtnsCont: {
+    width: '100%',
+    boxSizing: 'border-box',
+    position: 'relative',
+    display: 'flex',
+    overflow: 'hidden',
+  },
+  filterBtn: {
+    flex: 1,
+  },
+  orderBtn: {
+    width: '100%',
+  },
+  ipa: {
+    color: '#388E3C',
+  },
+  sour: {
+    color: '#FF4081',
+  },
+  stout: {
+    color: '#795548',
+  },
+  cider: {
+    color: '#FBC02D',
+  },
+  other: {
+    color: '#455A64',
+  },
+};
 
 TapList.propTypes = propTypes;
 
