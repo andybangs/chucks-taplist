@@ -30,7 +30,6 @@ class TapList extends React.Component {
     this.compareItems = this.compareItems.bind(this);
     this.handleFilterClick = this.handleFilterClick.bind(this);
     this.handleOrderClick = this.handleOrderClick.bind(this);
-    this.handleResetClick = this.handleResetClick.bind(this);
     this.createButton = this.createButton.bind(this);
   }
 
@@ -100,10 +99,6 @@ class TapList extends React.Component {
     this.setState({ order });
   }
 
-  handleResetClick() {
-    this.setState({ filter: filters.ALL, order: orders.TAP });
-  }
-
   createButton(val) {
     return (
       <RaisedButton
@@ -141,7 +136,7 @@ class TapList extends React.Component {
 
     return (
       <div>
-        <Header handleResetClick={this.handleResetClick} />
+        <Header />
 
         <div style={styles.body}>
           <div style={styles.filterBtnsCont}>

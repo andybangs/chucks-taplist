@@ -1,20 +1,18 @@
 import React, { PropTypes } from 'react';
 import AppBar from 'material-ui/AppBar';
-import FlatButton from 'material-ui/FlatButton';
 
 const propTypes = {
   handleResetClick: PropTypes.func.isRequired,
 };
 
-function Header(props) {
+function Header() {
   return (
     <AppBar
       title="Taplist"
+      titleStyle={{ textAlign: 'center' }}
       style={{ position: 'fixed' }}
       iconElementLeft={<span></span>}
-      iconElementRight={
-        <FlatButton label="Reset" onTouchTap={props.handleResetClick} />
-      }
+      iconElementRight={<span></span>}
     />
   );
 }
