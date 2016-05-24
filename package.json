@@ -31,5 +31,8 @@
     "webpack": "^1.13.0",
     "whatwg-fetch": "^1.0.0",
     "x-ray": "^2.3.0"
+  },
+  "engines": {
+    "node": "4.4.2"
   }
 }
