@@ -1,6 +1,7 @@
 import 'whatwg-fetch';
 import React, { PropTypes } from 'react';
 
+import RefreshIndicator from 'material-ui/RefreshIndicator';
 import RaisedButton from 'material-ui/RaisedButton';
 import FlatButton from 'material-ui/FlatButton';
 import { Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn }
@@ -23,6 +24,7 @@ class TapList extends React.Component {
       data: [],
       filter: filters.ALL,
       order: orders.TAP,
+      loading: false,
     };
 
     this.fetchList = this.fetchList.bind(this);
@@ -42,17 +44,20 @@ class TapList extends React.Component {
   }
 
   fetchList(location) {
+    this.setState({ loading: true });
     fetch(new Request(endpoints[location]))
       .then(response => {
         if (response.ok) {
           response.json().then(json => {
-            this.setState({ data: json });
+            this.setState({ data: json, loading: false });
           });
         } else {
+          this.setState({ loading: false });
           throw new Error('Network response was not ok.');
         }
       })
       .catch(error => {
+        this.setState({ loading: false });
         throw new Error(`Fetch operation failed: ${error.message}`);
       });
   }
@@ -134,6 +139,60 @@ class TapList extends React.Component {
       .sort(this.compareItems)
       .map(this.createItem);
 
+    if (!this.state.loading) {
+      return (
+        <div>
+          <Header />
+
+          <div style={styles.body}>
+            <div style={styles.filterBtnsCont}>
+              {filtersArr.map(this.createButton)}
+            </div>
+
+            <Table>
+              <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
+                <TableRow>
+                  <TableHeaderColumn
+                    style={order === orders.TAP ? styles.selectedHeader : styles.defaultHeader}
+                    onTouchTap={() => this.handleOrderClick(orders.TAP)}
+                  >
+                    <FlatButton hoverColor={'#FFF'} style={styles.headerBtn}>#</FlatButton>
+                  </TableHeaderColumn>
+                  <TableHeaderColumn
+                    style={order === orders.BREWERY ? styles.selectedHeader : styles.defaultHeader}
+                    onTouchTap={() => this.handleOrderClick(orders.BREWERY)}
+                  >
+                    <FlatButton hoverColor={'#FFF'} style={styles.headerBtn}>brewery</FlatButton>
+                  </TableHeaderColumn>
+                  <TableHeaderColumn
+                    style={order === orders.BEER ? styles.selectedHeader : styles.defaultHeader}
+                    onTouchTap={() => this.handleOrderClick(orders.BEER)}
+                  >
+                    <FlatButton hoverColor={'#FFF'} style={styles.headerBtn}>beer</FlatButton>
+                  </TableHeaderColumn>
+                  <TableHeaderColumn
+                    style={order === orders.PRICE ? styles.selectedHeader : styles.defaultHeader}
+                    onTouchTap={() => this.handleOrderClick(orders.PRICE)}
+                  >
+                    <FlatButton hoverColor={'#FFF'} style={styles.headerBtn}>pint</FlatButton>
+                  </TableHeaderColumn>
+                  <TableHeaderColumn
+                    style={order === orders.ABV ? styles.selectedHeader : styles.defaultHeader}
+                    onTouchTap={() => this.handleOrderClick(orders.ABV)}
+                  >
+                    <FlatButton hoverColor={'#FFF'} style={styles.headerBtn}>abv</FlatButton>
+                  </TableHeaderColumn>
+                </TableRow>
+              </TableHeader>
+              <TableBody displayRowCheckbox={false}>
+                {tableRows}
+              </TableBody>
+            </Table>
+          </div>
+        </div>
+      );
+    }
+
     return (
       <div>
         <Header />
@@ -143,45 +202,12 @@ class TapList extends React.Component {
             {filtersArr.map(this.createButton)}
           </div>
 
-          <Table>
-            <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
-              <TableRow>
-                <TableHeaderColumn
-                  style={order === orders.TAP ? styles.selectedHeader : styles.defaultHeader}
-                  onTouchTap={() => this.handleOrderClick(orders.TAP)}
-                >
-                  <FlatButton hoverColor={'#FFF'} style={styles.headerBtn}>#</FlatButton>
-                </TableHeaderColumn>
-                <TableHeaderColumn
-                  style={order === orders.BREWERY ? styles.selectedHeader : styles.defaultHeader}
-                  onTouchTap={() => this.handleOrderClick(orders.BREWERY)}
-                >
-                  <FlatButton hoverColor={'#FFF'} style={styles.headerBtn}>brewery</FlatButton>
-                </TableHeaderColumn>
-                <TableHeaderColumn
-                  style={order === orders.BEER ? styles.selectedHeader : styles.defaultHeader}
-                  onTouchTap={() => this.handleOrderClick(orders.BEER)}
-                >
-                  <FlatButton hoverColor={'#FFF'} style={styles.headerBtn}>beer</FlatButton>
-                </TableHeaderColumn>
-                <TableHeaderColumn
-                  style={order === orders.PRICE ? styles.selectedHeader : styles.defaultHeader}
-                  onTouchTap={() => this.handleOrderClick(orders.PRICE)}
-                >
-                  <FlatButton hoverColor={'#FFF'} style={styles.headerBtn}>pint</FlatButton>
-                </TableHeaderColumn>
-                <TableHeaderColumn
-                  style={order === orders.ABV ? styles.selectedHeader : styles.defaultHeader}
-                  onTouchTap={() => this.handleOrderClick(orders.ABV)}
-                >
-                  <FlatButton hoverColor={'#FFF'} style={styles.headerBtn}>abv</FlatButton>
-                </TableHeaderColumn>
-              </TableRow>
-            </TableHeader>
-            <TableBody displayRowCheckbox={false}>
-              {tableRows}
-            </TableBody>
-          </Table>
+          <RefreshIndicator
+            size={50}
+            left={window.innerWidth / 2 - 20}
+            top={window.innerHeight / 2 - 20}
+            status="loading"
+          />
         </div>
       </div>
     );
