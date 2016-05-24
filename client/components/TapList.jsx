@@ -10,7 +10,6 @@ import Header from './Header';
 import { filters, orders, endpoints } from '../constants';
 
 const filtersArr = Object.keys(filters).map(key => filters[key]);
-const ordersArr = Object.keys(orders).map(key => orders[key]);
 
 const propTypes = {
   params: PropTypes.object.isRequired,
@@ -23,7 +22,7 @@ class TapList extends React.Component {
     this.state = {
       data: [],
       filter: filters.ALL,
-      orderIndex: 0,
+      order: orders.TAP,
     };
 
     this.fetchList = this.fetchList.bind(this);
@@ -73,9 +72,11 @@ class TapList extends React.Component {
   }
 
   compareItems(a, b) {
-    switch (ordersArr[this.state.orderIndex]) {
+    switch (this.state.order) {
       case orders.BREWERY:
         return a.brewery.toLowerCase() < b.brewery.toLowerCase() ? -1 : 1;
+      case orders.BEER:
+        return a.beer.toLowerCase() < b.beer.toLowerCase() ? -1 : 1;
       case orders.PRICE:
         return parseFloat(a.pint.slice(1)) - parseFloat(b.pint.slice(1));
       case orders.ABV:
@@ -95,14 +96,12 @@ class TapList extends React.Component {
     if (target) this.setState({ filter: target });
   }
 
-  handleOrderClick() {
-    const { orderIndex } = this.state;
-    const nextIndex = orderIndex < ordersArr.length - 1 ? orderIndex + 1 : 0;
-    this.setState({ orderIndex: nextIndex });
+  handleOrderClick(order) {
+    this.setState({ order });
   }
 
   handleResetClick() {
-    this.setState({ filter: filters.ALL, orderIndex: 0 });
+    this.setState({ filter: filters.ALL, order: orders.TAP });
   }
 
   createButton(val) {
@@ -134,7 +133,7 @@ class TapList extends React.Component {
   }
 
   render() {
-    const { data, orderIndex } = this.state;
+    const { data, order } = this.state;
     const tableRows = data
       .filter(this.filterItem)
       .sort(this.compareItems)
@@ -149,18 +148,39 @@ class TapList extends React.Component {
             {filtersArr.map(this.createButton)}
           </div>
 
-          <FlatButton onTouchTap={this.handleOrderClick} style={styles.orderBtn}>
-            Sort by: {ordersArr[orderIndex]}
-          </FlatButton>
-
-          <Table>
+          <Table height={window.innerHeight - 64 - 36 - 56} fixedHeader>
             <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
               <TableRow>
-                <TableHeaderColumn>#</TableHeaderColumn>
-                <TableHeaderColumn>brewery</TableHeaderColumn>
-                <TableHeaderColumn>beer</TableHeaderColumn>
-                <TableHeaderColumn>pint</TableHeaderColumn>
-                <TableHeaderColumn>abv</TableHeaderColumn>
+                <TableHeaderColumn
+                  style={order === orders.TAP ? styles.selectedHeader : styles.defaultHeader}
+                  onTouchTap={() => this.handleOrderClick(orders.TAP)}
+                >
+                  <FlatButton style={styles.headerBtn}>#</FlatButton>
+                </TableHeaderColumn>
+                <TableHeaderColumn
+                  style={order === orders.BREWERY ? styles.selectedHeader : styles.defaultHeader}
+                  onTouchTap={() => this.handleOrderClick(orders.BREWERY)}
+                >
+                  <FlatButton style={styles.headerBtn}>brewery</FlatButton>
+                </TableHeaderColumn>
+                <TableHeaderColumn
+                  style={order === orders.BEER ? styles.selectedHeader : styles.defaultHeader}
+                  onTouchTap={() => this.handleOrderClick(orders.BEER)}
+                >
+                  <FlatButton style={styles.headerBtn}>beer</FlatButton>
+                </TableHeaderColumn>
+                <TableHeaderColumn
+                  style={order === orders.PRICE ? styles.selectedHeader : styles.defaultHeader}
+                  onTouchTap={() => this.handleOrderClick(orders.PRICE)}
+                >
+                  <FlatButton style={styles.headerBtn}>pint</FlatButton>
+                </TableHeaderColumn>
+                <TableHeaderColumn
+                  style={order === orders.ABV ? styles.selectedHeader : styles.defaultHeader}
+                  onTouchTap={() => this.handleOrderClick(orders.ABV)}
+                >
+                  <FlatButton style={styles.headerBtn}>abv</FlatButton>
+                </TableHeaderColumn>
               </TableRow>
             </TableHeader>
             <TableBody displayRowCheckbox={false}>
@@ -188,8 +208,19 @@ const styles = {
   filterBtn: {
     flex: 1,
   },
-  orderBtn: {
-    width: '100%',
+  selectedHeader: {
+    fontSize: '1em',
+    fontWeight: 'bold',
+    color: '#455A64',
+    cursor: 'pointer',
+  },
+  defaultHeader: {
+    fontSize: '0.8em',
+    cursor: 'pointer',
+  },
+  headerBtn: {
+    textAlign: 'left',
+    paddingLeft: 5,
   },
   ipa: {
     color: '#388E3C',
