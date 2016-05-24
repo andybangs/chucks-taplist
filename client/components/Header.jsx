@@ -1,9 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 import AppBar from 'material-ui/AppBar';
-
-const propTypes = {
-  handleResetClick: PropTypes.func.isRequired,
-};
 
 function Header() {
   return (
@@ -16,7 +12,5 @@ function Header() {
     />
   );
 }
-
-Header.propTypes = propTypes;
 
 export default Header;
