@@ -10,6 +10,7 @@ function Header(props) {
   return (
     <AppBar
       title="Taplist"
+      style={{ position: 'fixed' }}
       iconElementLeft={<span></span>}
       iconElementRight={
         <FlatButton label="Reset" onTouchTap={props.handleResetClick} />

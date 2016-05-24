@@ -141,28 +141,30 @@ class TapList extends React.Component {
       <div>
         <Header handleResetClick={this.handleResetClick} />
 
-        <div style={styles.filterBtnsCont}>
-          {filtersArr.map(this.createButton)}
+        <div style={styles.body}>
+          <div style={styles.filterBtnsCont}>
+            {filtersArr.map(this.createButton)}
+          </div>
+
+          <FlatButton onTouchTap={this.handleOrderClick} style={styles.orderBtn}>
+            Sort by: {ordersArr[orderIndex]}
+          </FlatButton>
+
+          <Table>
+            <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
+              <TableRow>
+                <TableHeaderColumn>#</TableHeaderColumn>
+                <TableHeaderColumn>brewery</TableHeaderColumn>
+                <TableHeaderColumn>beer</TableHeaderColumn>
+                <TableHeaderColumn>pint</TableHeaderColumn>
+                <TableHeaderColumn>abv</TableHeaderColumn>
+              </TableRow>
+            </TableHeader>
+            <TableBody displayRowCheckbox={false}>
+              {tableRows}
+            </TableBody>
+          </Table>
         </div>
-
-        <FlatButton onTouchTap={this.handleOrderClick} style={styles.orderBtn}>
-          Sort by: {ordersArr[orderIndex]}
-        </FlatButton>
-
-        <Table>
-          <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
-            <TableRow>
-              <TableHeaderColumn>#</TableHeaderColumn>
-              <TableHeaderColumn>brewery</TableHeaderColumn>
-              <TableHeaderColumn>beer</TableHeaderColumn>
-              <TableHeaderColumn>pint</TableHeaderColumn>
-              <TableHeaderColumn>abv</TableHeaderColumn>
-            </TableRow>
-          </TableHeader>
-          <TableBody displayRowCheckbox={false}>
-            {tableRows}
-          </TableBody>
-        </Table>
       </div>
     );
   }
@@ -170,6 +172,9 @@ class TapList extends React.Component {
 
 /* eslint no-use-before-define: 0 */
 const styles = {
+  body: {
+    paddingTop: 64,
+  },
   filterBtnsCont: {
     width: '100%',
     boxSizing: 'border-box',
