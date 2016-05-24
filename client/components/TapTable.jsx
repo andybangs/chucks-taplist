@@ -1,12 +1,8 @@
 import React, { PropTypes } from 'react';
-
 import FlatButton from 'material-ui/FlatButton';
 import { Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn }
   from 'material-ui/Table';
-
-import { orders, filters } from '../constants';
-
-const filtersArr = Object.keys(filters).map(key => filters[key]);
+import { orders, filtersArr } from '../constants';
 
 const propTypes = {
   data: PropTypes.array.isRequired,

@@ -7,6 +7,8 @@ export const filters = {
   OTHER: 'other',
 };
 
+export const filtersArr = Object.keys(filters).map(key => filters[key]);
+
 export const orders = {
   TAP: 'Tap',
   BREWERY: 'Brewery',

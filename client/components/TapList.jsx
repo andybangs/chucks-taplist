@@ -1,14 +1,10 @@
 import 'whatwg-fetch';
 import React, { PropTypes } from 'react';
-
 import RefreshIndicator from 'material-ui/RefreshIndicator';
-import RaisedButton from 'material-ui/RaisedButton';
-
 import Header from './Header';
+import FilterBar from './FilterBar';
 import TapTable from './TapTable';
-import { filters, orders, endpoints } from '../constants';
-
-const filtersArr = Object.keys(filters).map(key => filters[key]);
+import { filters, filtersArr, orders, endpoints } from '../constants';
 
 const propTypes = {
   params: PropTypes.object.isRequired,
@@ -30,7 +26,6 @@ class TapList extends React.Component {
     this.compareItems = this.compareItems.bind(this);
     this.handleFilterClick = this.handleFilterClick.bind(this);
     this.handleOrderClick = this.handleOrderClick.bind(this);
-    this.createButton = this.createButton.bind(this);
   }
 
   componentDidMount() {
@@ -102,29 +97,17 @@ class TapList extends React.Component {
     this.setState({ order });
   }
 
-  createButton(val) {
-    return (
-      <RaisedButton
-        key={val}
-        label={val}
-        secondary={this.state.filter === val}
-        onTouchTap={this.handleFilterClick}
-        style={styles.filterBtn}
-      />
-    );
-  }
-
   render() {
     if (!this.state.loading) {
       return (
         <div>
           <Header />
-
           <div style={styles.body}>
-            <div style={styles.filterBtnsCont}>
-              {filtersArr.map(this.createButton)}
-            </div>
-
+            <FilterBar
+              filter={this.state.filter}
+              filterItem={this.filterItem}
+              handleFilterClick={this.handleFilterClick}
+            />
             <TapTable
               data={this.state.data}
               order={this.state.order}
@@ -140,12 +123,12 @@ class TapList extends React.Component {
     return (
       <div>
         <Header />
-
         <div style={styles.body}>
-          <div style={styles.filterBtnsCont}>
-            {filtersArr.map(this.createButton)}
-          </div>
-
+          <FilterBar
+            filter={this.state.filter}
+            filterItem={this.filterItem}
+            handleFilterClick={this.handleFilterClick}
+          />
           <RefreshIndicator
             size={50}
             left={window.innerWidth / 2 - 20}
@@ -162,16 +145,6 @@ class TapList extends React.Component {
 const styles = {
   body: {
     paddingTop: 64,
-  },
-  filterBtnsCont: {
-    width: '100%',
-    boxSizing: 'border-box',
-    position: 'relative',
-    display: 'flex',
-    overflow: 'hidden',
-  },
-  filterBtn: {
-    flex: 1,
   },
 };
 
