@@ -3,11 +3,9 @@ import React, { PropTypes } from 'react';
 
 import RefreshIndicator from 'material-ui/RefreshIndicator';
 import RaisedButton from 'material-ui/RaisedButton';
-import FlatButton from 'material-ui/FlatButton';
-import { Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn }
-  from 'material-ui/Table';
 
 import Header from './Header';
+import TapTable from './TapTable';
 import { filters, orders, endpoints } from '../constants';
 
 const filtersArr = Object.keys(filters).map(key => filters[key]);
@@ -116,29 +114,7 @@ class TapList extends React.Component {
     );
   }
 
-  createItem(item) {
-    const filterClass = item.classes[1];
-    const validFilter = filtersArr.indexOf(filterClass) !== -1;
-    const beerStyle = filterClass && validFilter ? filterClass : 'other';
-
-    return (
-      <TableRow key={item.tap}>
-        <TableRowColumn style={styles[beerStyle]}>{item.tap}</TableRowColumn>
-        <TableRowColumn style={styles[beerStyle]}>{item.brewery}</TableRowColumn>
-        <TableRowColumn style={styles[beerStyle]}>{item.beer}</TableRowColumn>
-        <TableRowColumn style={styles[beerStyle]}>{item.pint}</TableRowColumn>
-        <TableRowColumn style={styles[beerStyle]}>{item.abv || 0}</TableRowColumn>
-      </TableRow>
-    );
-  }
-
   render() {
-    const { data, order } = this.state;
-    const tableRows = data
-      .filter(this.filterItem)
-      .sort(this.compareItems)
-      .map(this.createItem);
-
     if (!this.state.loading) {
       return (
         <div>
@@ -149,45 +125,13 @@ class TapList extends React.Component {
               {filtersArr.map(this.createButton)}
             </div>
 
-            <Table>
-              <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
-                <TableRow>
-                  <TableHeaderColumn
-                    style={order === orders.TAP ? styles.selectedHeader : styles.defaultHeader}
-                    onTouchTap={() => this.handleOrderClick(orders.TAP)}
-                  >
-                    <FlatButton hoverColor={'#FFF'} style={styles.headerBtn}>#</FlatButton>
-                  </TableHeaderColumn>
-                  <TableHeaderColumn
-                    style={order === orders.BREWERY ? styles.selectedHeader : styles.defaultHeader}
-                    onTouchTap={() => this.handleOrderClick(orders.BREWERY)}
-                  >
-                    <FlatButton hoverColor={'#FFF'} style={styles.headerBtn}>brewery</FlatButton>
-                  </TableHeaderColumn>
-                  <TableHeaderColumn
-                    style={order === orders.BEER ? styles.selectedHeader : styles.defaultHeader}
-                    onTouchTap={() => this.handleOrderClick(orders.BEER)}
-                  >
-                    <FlatButton hoverColor={'#FFF'} style={styles.headerBtn}>beer</FlatButton>
-                  </TableHeaderColumn>
-                  <TableHeaderColumn
-                    style={order === orders.PRICE ? styles.selectedHeader : styles.defaultHeader}
-                    onTouchTap={() => this.handleOrderClick(orders.PRICE)}
-                  >
-                    <FlatButton hoverColor={'#FFF'} style={styles.headerBtn}>pint</FlatButton>
-                  </TableHeaderColumn>
-                  <TableHeaderColumn
-                    style={order === orders.ABV ? styles.selectedHeader : styles.defaultHeader}
-                    onTouchTap={() => this.handleOrderClick(orders.ABV)}
-                  >
-                    <FlatButton hoverColor={'#FFF'} style={styles.headerBtn}>abv</FlatButton>
-                  </TableHeaderColumn>
-                </TableRow>
-              </TableHeader>
-              <TableBody displayRowCheckbox={false}>
-                {tableRows}
-              </TableBody>
-            </Table>
+            <TapTable
+              data={this.state.data}
+              order={this.state.order}
+              handleOrderClick={this.handleOrderClick}
+              filterItem={this.filterItem}
+              compareItems={this.compareItems}
+            />
           </div>
         </div>
       );
@@ -228,35 +172,6 @@ const styles = {
   },
   filterBtn: {
     flex: 1,
-  },
-  selectedHeader: {
-    fontSize: '1em',
-    fontWeight: 'bold',
-    color: '#455A64',
-    cursor: 'pointer',
-  },
-  defaultHeader: {
-    fontSize: '0.8em',
-    cursor: 'pointer',
-  },
-  headerBtn: {
-    textAlign: 'left',
-    paddingLeft: 5,
-  },
-  ipa: {
-    color: '#388E3C',
-  },
-  sour: {
-    color: '#FF4081',
-  },
-  stout: {
-    color: '#795548',
-  },
-  cider: {
-    color: '#FBC02D',
-  },
-  other: {
-    color: '#455A64',
   },
 };
 
