@@ -86,10 +86,13 @@ class TapList extends React.Component {
   }
 
   handleFilterClick(event) {
-    const target = event.target.innerHTML ||
-      event.target.parentNode.nextSibling.children[0].innerHTML;
+    const target = !event.target.children.length ?
+      event.target.innerHTML ||                                       // desktop + mobile
+        event.target.parentNode.nextSibling.children[0].innerHTML :   // desktop
+      event.target.children[0].innerHTML ||                           // mobile
+        event.target.nextSibling.children[0].innerHTML;               // mobile
 
-    this.setState({ filter: target });
+    if (target) this.setState({ filter: target });
   }
 
   handleOrderClick() {
