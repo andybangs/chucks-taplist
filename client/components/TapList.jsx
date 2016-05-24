@@ -143,38 +143,38 @@ class TapList extends React.Component {
             {filtersArr.map(this.createButton)}
           </div>
 
-          <Table height={window.innerHeight - 64 - 36 - 56} fixedHeader>
+          <Table>
             <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
               <TableRow>
                 <TableHeaderColumn
                   style={order === orders.TAP ? styles.selectedHeader : styles.defaultHeader}
                   onTouchTap={() => this.handleOrderClick(orders.TAP)}
                 >
-                  <FlatButton style={styles.headerBtn}>#</FlatButton>
+                  <FlatButton hoverColor={'#FFF'} style={styles.headerBtn}>#</FlatButton>
                 </TableHeaderColumn>
                 <TableHeaderColumn
                   style={order === orders.BREWERY ? styles.selectedHeader : styles.defaultHeader}
                   onTouchTap={() => this.handleOrderClick(orders.BREWERY)}
                 >
-                  <FlatButton style={styles.headerBtn}>brewery</FlatButton>
+                  <FlatButton hoverColor={'#FFF'} style={styles.headerBtn}>brewery</FlatButton>
                 </TableHeaderColumn>
                 <TableHeaderColumn
                   style={order === orders.BEER ? styles.selectedHeader : styles.defaultHeader}
                   onTouchTap={() => this.handleOrderClick(orders.BEER)}
                 >
-                  <FlatButton style={styles.headerBtn}>beer</FlatButton>
+                  <FlatButton hoverColor={'#FFF'} style={styles.headerBtn}>beer</FlatButton>
                 </TableHeaderColumn>
                 <TableHeaderColumn
                   style={order === orders.PRICE ? styles.selectedHeader : styles.defaultHeader}
                   onTouchTap={() => this.handleOrderClick(orders.PRICE)}
                 >
-                  <FlatButton style={styles.headerBtn}>pint</FlatButton>
+                  <FlatButton hoverColor={'#FFF'} style={styles.headerBtn}>pint</FlatButton>
                 </TableHeaderColumn>
                 <TableHeaderColumn
                   style={order === orders.ABV ? styles.selectedHeader : styles.defaultHeader}
                   onTouchTap={() => this.handleOrderClick(orders.ABV)}
                 >
-                  <FlatButton style={styles.headerBtn}>abv</FlatButton>
+                  <FlatButton hoverColor={'#FFF'} style={styles.headerBtn}>abv</FlatButton>
                 </TableHeaderColumn>
               </TableRow>
             </TableHeader>
