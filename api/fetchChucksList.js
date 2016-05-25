@@ -18,7 +18,7 @@ module.exports = function fetchList(url) {
     )((err, results) => {
       if (err) reject(err);
 
-      const json = results
+      const json = results && results
         .slice(0, results.length - 2)
         .map(result => {
           const returnObj = Object.assign({}, result);
