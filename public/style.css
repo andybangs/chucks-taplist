@@ -13,12 +13,20 @@ h1 {
   font-size: 1.9em !important;
 }
 
-button {
+table button {
   min-width: 100% !important;
 }
 
 button span {
   padding: 0 2% !important;
+}
+
+/* ensure accurate retreival of innerHTML */
+.filterBtn span {
+  position: absolute !important;
+  width: 100% !important;
+  top: 0 !important;
+  left: 0 !important;
 }
 
 th, td {
@@ -32,5 +40,5 @@ tr {
 }
 
 td {
-  font-size: 1em !important;
+  font-size: 1.1em !important;
 }

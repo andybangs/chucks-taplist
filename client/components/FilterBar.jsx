@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import RaisedButton from 'material-ui/RaisedButton';
+import FlatButton from 'material-ui/FlatButton';
 import { filtersArr } from '../constants';
 
 const propTypes = {
@@ -9,15 +9,20 @@ const propTypes = {
 };
 
 function FilterBar(props) {
+  const hoverColor = window.innerWidth < 768 ? '#FFF' : '';
+
   return (
     <div style={styles.filterBtnsCont}>
       {filtersArr.map(val =>
-        <RaisedButton
+        <FlatButton
           key={val}
           label={val}
           secondary={props.filter === val}
           onTouchTap={props.handleFilterClick}
+          className="filterBtn"
           style={styles.filterBtn}
+          backgroundColor={'#FFF'}
+          hoverColor={hoverColor}
         />
       )}
     </div>
@@ -38,6 +43,7 @@ const styles = {
   },
   filterBtn: {
     flex: 1,
+    minWidth: 0,
   },
 };
 

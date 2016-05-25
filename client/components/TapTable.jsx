@@ -42,12 +42,17 @@ function headerStyle(propOrder, headerOrder) {
   return propOrder === headerOrder ? styles.selectedHeader : styles.defaultHeader;
 }
 
+function isSelected(propOrder, headerOrder) {
+  return propOrder === headerOrder;
+}
+
 function TapTable(props) {
   const { data, order, handleOrderClick, filterItem, compareItems } = props;
   const tableRows = data
     .filter(filterItem)
     .sort(compareItems)
     .map(createItem);
+  const hoverColor = window.innerWidth < 768 ? '#FFF' : '';
 
   return (
     <Table selectable={false} style={styles.table}>
@@ -57,31 +62,51 @@ function TapTable(props) {
             style={Object.assign({}, headerStyle(order, orders.TAP), styles.tap)}
             onTouchTap={() => handleOrderClick(orders.TAP)}
           >
-            <FlatButton hoverColor={'#FFF'} style={styles.headerBtnCenter}>#</FlatButton>
+            <FlatButton
+              hoverColor={hoverColor}
+              secondary={isSelected(order, orders.TAP)}
+              style={styles.headerBtnCenter}
+            >#</FlatButton>
           </TableHeaderColumn>
           <TableHeaderColumn
             style={Object.assign({}, headerStyle(order, orders.BREWERY), styles.brewery)}
             onTouchTap={() => handleOrderClick(orders.BREWERY)}
           >
-            <FlatButton hoverColor={'#FFF'} style={styles.headerBtnLeft}>brewery</FlatButton>
+            <FlatButton
+              hoverColor={hoverColor}
+              secondary={isSelected(order, orders.BREWERY)}
+              style={styles.headerBtnLeft}
+            >brewery</FlatButton>
           </TableHeaderColumn>
           <TableHeaderColumn
             style={Object.assign({}, headerStyle(order, orders.BEER), styles.beer)}
             onTouchTap={() => handleOrderClick(orders.BEER)}
           >
-            <FlatButton hoverColor={'#FFF'} style={styles.headerBtnLeft}>beer</FlatButton>
+            <FlatButton
+              hoverColor={hoverColor}
+              secondary={isSelected(order, orders.BEER)}
+              style={styles.headerBtnLeft}
+            >beer</FlatButton>
           </TableHeaderColumn>
           <TableHeaderColumn
             style={Object.assign({}, headerStyle(order, orders.PRICE), styles.pint)}
             onTouchTap={() => handleOrderClick(orders.PRICE)}
           >
-            <FlatButton hoverColor={'#FFF'} style={styles.headerBtnCenter}>pint</FlatButton>
+            <FlatButton
+              hoverColor={hoverColor}
+              secondary={isSelected(order, orders.PRICE)}
+              style={styles.headerBtnCenter}
+            >pint</FlatButton>
           </TableHeaderColumn>
           <TableHeaderColumn
             style={Object.assign({}, headerStyle(order, orders.ABV), styles.abv)}
             onTouchTap={() => handleOrderClick(orders.ABV)}
           >
-            <FlatButton hoverColor={'#FFF'} style={styles.headerBtnCenter}>abv</FlatButton>
+            <FlatButton
+              hoverColor={hoverColor}
+              secondary={isSelected(order, orders.ABV)}
+              style={styles.headerBtnCenter}
+            >abv</FlatButton>
           </TableHeaderColumn>
         </TableRow>
       </TableHeader>
@@ -100,11 +125,12 @@ const styles = {
   selectedHeader: {
     fontSize: '1.1em',
     fontWeight: 'bold',
-    color: '#455A64',
+    color: '#00BCD4',
     cursor: 'pointer',
   },
   defaultHeader: {
-    fontSize: '1em',
+    fontSize: '0.9em',
+    fontWeight: 'bold',
     cursor: 'pointer',
   },
   headerBtnLeft: {
@@ -115,11 +141,11 @@ const styles = {
     textAlign: 'center',
   },
   tap: {
-    width: '12%',
+    width: '13%',
     textAlign: 'center',
   },
   brewery: {
-    width: '31%',
+    width: '30%',
     wordWrap: 'break-word',
     whiteSpace: 'normal',
   },
