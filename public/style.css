@@ -21,6 +21,6 @@ button span {
 }
 
 th, td {
-  padding-left: 8px !important;
+  padding-left: 0 !important;
   padding-right: 0 !important;
 }

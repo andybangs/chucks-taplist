@@ -102,12 +102,12 @@ class TapList extends React.Component {
       return (
         <div>
           <Header />
+          <FilterBar
+            filter={this.state.filter}
+            filterItem={this.filterItem}
+            handleFilterClick={this.handleFilterClick}
+          />
           <div style={styles.body}>
-            <FilterBar
-              filter={this.state.filter}
-              filterItem={this.filterItem}
-              handleFilterClick={this.handleFilterClick}
-            />
             <TapTable
               data={this.state.data}
               order={this.state.order}
@@ -123,12 +123,12 @@ class TapList extends React.Component {
     return (
       <div>
         <Header />
+        <FilterBar
+          filter={this.state.filter}
+          filterItem={this.filterItem}
+          handleFilterClick={this.handleFilterClick}
+        />
         <div style={styles.body}>
-          <FilterBar
-            filter={this.state.filter}
-            filterItem={this.filterItem}
-            handleFilterClick={this.handleFilterClick}
-          />
           <RefreshIndicator
             size={50}
             left={window.innerWidth / 2 - 20}
@@ -144,7 +144,7 @@ class TapList extends React.Component {
 /* eslint no-use-before-define: 0 */
 const styles = {
   body: {
-    paddingTop: 64,
+    paddingTop: 64 + 36,
   },
 };
 

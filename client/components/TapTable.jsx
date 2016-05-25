@@ -57,31 +57,31 @@ function TapTable(props) {
             style={Object.assign({}, headerStyle(order, orders.TAP), styles.tap)}
             onTouchTap={() => handleOrderClick(orders.TAP)}
           >
-            <FlatButton hoverColor={'#FFF'} style={styles.headerBtn}>#</FlatButton>
+            <FlatButton hoverColor={'#FFF'} style={styles.headerBtnCenter}>#</FlatButton>
           </TableHeaderColumn>
           <TableHeaderColumn
             style={Object.assign({}, headerStyle(order, orders.BREWERY), styles.brewery)}
             onTouchTap={() => handleOrderClick(orders.BREWERY)}
           >
-            <FlatButton hoverColor={'#FFF'} style={styles.headerBtn}>brewery</FlatButton>
+            <FlatButton hoverColor={'#FFF'} style={styles.headerBtnLeft}>brewery</FlatButton>
           </TableHeaderColumn>
           <TableHeaderColumn
             style={Object.assign({}, headerStyle(order, orders.BEER), styles.beer)}
             onTouchTap={() => handleOrderClick(orders.BEER)}
           >
-            <FlatButton hoverColor={'#FFF'} style={styles.headerBtn}>beer</FlatButton>
+            <FlatButton hoverColor={'#FFF'} style={styles.headerBtnLeft}>beer</FlatButton>
           </TableHeaderColumn>
           <TableHeaderColumn
             style={Object.assign({}, headerStyle(order, orders.PRICE), styles.pint)}
             onTouchTap={() => handleOrderClick(orders.PRICE)}
           >
-            <FlatButton hoverColor={'#FFF'} style={styles.headerBtn}>pint</FlatButton>
+            <FlatButton hoverColor={'#FFF'} style={styles.headerBtnCenter}>pint</FlatButton>
           </TableHeaderColumn>
           <TableHeaderColumn
             style={Object.assign({}, headerStyle(order, orders.ABV), styles.abv)}
             onTouchTap={() => handleOrderClick(orders.ABV)}
           >
-            <FlatButton hoverColor={'#FFF'} style={styles.headerBtn}>abv</FlatButton>
+            <FlatButton hoverColor={'#FFF'} style={styles.headerBtnCenter}>abv</FlatButton>
           </TableHeaderColumn>
         </TableRow>
       </TableHeader>
@@ -107,24 +107,30 @@ const styles = {
     fontSize: '0.8em',
     cursor: 'pointer',
   },
-  headerBtn: {
+  headerBtnLeft: {
     textAlign: 'left',
     paddingLeft: 3,
   },
+  headerBtnCenter: {
+    textAlign: 'center',
+  },
   tap: {
     width: '12%',
+    textAlign: 'center',
   },
   brewery: {
-    width: '32%',
+    width: '31%',
   },
   beer: {
-    width: '32%',
+    width: '31%',
   },
   pint: {
-    width: '12%',
+    width: '13%',
+    textAlign: 'center',
   },
   abv: {
-    width: '12%',
+    width: '13%',
+    textAlign: 'center',
   },
   ipa: {
     color: '#388E3C',
