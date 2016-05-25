@@ -104,7 +104,7 @@ const styles = {
     cursor: 'pointer',
   },
   defaultHeader: {
-    fontSize: '0.9em',
+    fontSize: '1em',
     cursor: 'pointer',
   },
   headerBtnLeft: {
@@ -120,9 +120,13 @@ const styles = {
   },
   brewery: {
     width: '31%',
+    wordWrap: 'break-word',
+    whiteSpace: 'normal',
   },
   beer: {
     width: '31%',
+    wordWrap: 'break-word',
+    whiteSpace: 'normal',
   },
   pint: {
     width: '13%',
