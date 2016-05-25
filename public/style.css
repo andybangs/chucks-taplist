@@ -6,11 +6,12 @@ body {
   margin: 0;
 }
 
+/* Material-UI Overrides */
+
 h1 {
   font-family: 'Norican', cursive;
+  font-size: 1.9em !important;
 }
-
-/* Material-UI Overrides */
 
 button {
   min-width: 100% !important;
@@ -23,4 +24,9 @@ button span {
 th, td {
   padding-left: 0 !important;
   padding-right: 0 !important;
+  font-family: 'Roboto Condensed', sans-serif !important;
+}
+
+td {
+  font-size: 0.9em !important;
 }

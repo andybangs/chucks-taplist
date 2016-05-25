@@ -98,13 +98,13 @@ const styles = {
     width: '100%',
   },
   selectedHeader: {
-    fontSize: '1em',
+    fontSize: '1.1em',
     fontWeight: 'bold',
     color: '#455A64',
     cursor: 'pointer',
   },
   defaultHeader: {
-    fontSize: '0.8em',
+    fontSize: '0.9em',
     cursor: 'pointer',
   },
   headerBtnLeft: {

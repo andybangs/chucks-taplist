@@ -1,6 +1,5 @@
 import React, { PropTypes } from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
-import Divider from 'material-ui/Divider';
 import { filtersArr } from '../constants';
 
 const propTypes = {
@@ -30,7 +29,7 @@ const styles = {
   filterBtnsCont: {
     width: '100%',
     boxSizing: 'border-box',
-    boxShadow: '0px 1px 3px grey',
+    boxShadow: '0px 1px 2px grey',
     position: 'fixed',
     marginTop: 64,
     display: 'flex',
