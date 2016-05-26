@@ -104,6 +104,7 @@ class TapList extends React.Component {
       return (
         <div>
           <Header
+            location={this.props.params.location}
             handleMenuClick={this.handleMenuClick}
           />
           <LocationMenu
@@ -131,6 +132,7 @@ class TapList extends React.Component {
     return (
       <div>
         <Header
+          location={this.props.params.location}
           handleMenuClick={this.handleMenuClick}
         />
         <FilterBar

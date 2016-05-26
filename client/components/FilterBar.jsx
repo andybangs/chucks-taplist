@@ -39,6 +39,7 @@ const styles = {
     marginTop: 64,
     display: 'flex',
     overflow: 'hidden',
+    backgroundColor: '#FFF',
     zIndex: 1000,
   },
   filterBtn: {

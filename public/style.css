@@ -8,11 +8,6 @@ body {
 
 /* Material-UI Overrides */
 
-h1 {
-  font-family: 'Norican', cursive;
-  font-size: 1.9em !important;
-}
-
 table button {
   min-width: 100% !important;
 }

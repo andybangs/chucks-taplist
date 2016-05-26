@@ -21,3 +21,8 @@ export const endpoints = {
   chucks85th: '/api/85th/beers',
   chuckscd: '/api/cd/beers',
 };
+
+export const titles = {
+  chucks85th: 'Chuck\'s 85th',
+  chuckscd: 'Chuck\'s CD',
+};
