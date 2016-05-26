@@ -18,11 +18,11 @@ function LocationMenu(props) {
       disableSwipeToOpen
     >
       <Subheader onTouchTap={props.handleMenuClick}>Locations</Subheader>
-      <MenuItem onTouchTap={props.handleMenuClick}>
-        <Link to="/chucks85th" style={styles.link}>Chuck's 85th</Link>
+      <MenuItem onTouchTap={props.handleMenuClick} style={styles.item}>
+        <Link to="/chucks85th" style={styles.link1}>Chuck's 85th</Link>
       </MenuItem>
-      <MenuItem onTouchTap={props.handleMenuClick}>
-        <Link to="/chuckscd" style={styles.link}>Chuck's CD</Link>
+      <MenuItem onTouchTap={props.handleMenuClick} style={styles.item}>
+        <Link to="/chuckscd" style={styles.link2}>Chuck's CD</Link>
       </MenuItem>
     </Drawer>
   );
@@ -30,10 +30,31 @@ function LocationMenu(props) {
 
 /* eslint no-use-before-define: 0 */
 const styles = {
-  link: {
+  item: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    width: '100%',
+  },
+  link1: {
     textDecoration: 'none',
     color: 'rgba(0, 0, 0, 0.870588)',
     cursor: 'pointer',
+    position: 'absolute',
+    top: 50,
+    left: 0,
+    paddingLeft: 16,
+    width: '100%',
+  },
+  link2: {
+    textDecoration: 'none',
+    color: 'rgba(0, 0, 0, 0.870588)',
+    cursor: 'pointer',
+    position: 'absolute',
+    top: 100,
+    left: 0,
+    paddingLeft: 16,
+    width: '100%',
   },
 };
 
