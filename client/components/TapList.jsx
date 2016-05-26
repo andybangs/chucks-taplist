@@ -108,7 +108,6 @@ class TapList extends React.Component {
           />
           <LocationMenu
             menuOpen={this.state.menuOpen}
-            fetchList={this.fetchList}
             handleMenuClick={this.handleMenuClick}
           />
           <FilterBar
