@@ -4,6 +4,7 @@ import RefreshIndicator from 'material-ui/RefreshIndicator';
 import Header from './Header';
 import FilterBar from './FilterBar';
 import TapTable from './TapTable';
+import LocationMenu from './LocationMenu';
 import { filters, filtersArr, orders, endpoints } from '../constants';
 
 const propTypes = {
@@ -18,12 +19,14 @@ class TapList extends React.Component {
       data: [],
       filter: filters.ALL,
       order: orders.TAP,
+      menuOpen: false,
       loading: false,
     };
 
     this.fetchList = this.fetchList.bind(this);
     this.filterItem = this.filterItem.bind(this);
     this.compareItems = this.compareItems.bind(this);
+    this.handleMenuClick = this.handleMenuClick.bind(this);
     this.handleFilterClick = this.handleFilterClick.bind(this);
     this.handleOrderClick = this.handleOrderClick.bind(this);
   }
@@ -83,6 +86,10 @@ class TapList extends React.Component {
     }
   }
 
+  handleMenuClick() {
+    this.setState({ menuOpen: !this.state.menuOpen });
+  }
+
   handleFilterClick(event) {
     const target = event.target.innerHTML;
     if (target) this.setState({ filter: target });
@@ -96,7 +103,14 @@ class TapList extends React.Component {
     if (!this.state.loading) {
       return (
         <div>
-          <Header />
+          <Header
+            handleMenuClick={this.handleMenuClick}
+          />
+          <LocationMenu
+            menuOpen={this.state.menuOpen}
+            fetchList={this.fetchList}
+            handleMenuClick={this.handleMenuClick}
+          />
           <FilterBar
             filter={this.state.filter}
             filterItem={this.filterItem}
@@ -117,7 +131,9 @@ class TapList extends React.Component {
 
     return (
       <div>
-        <Header />
+        <Header
+          handleMenuClick={this.handleMenuClick}
+        />
         <FilterBar
           filter={this.state.filter}
           filterItem={this.filterItem}
