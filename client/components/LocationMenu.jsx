@@ -15,6 +15,7 @@ function LocationMenu(props) {
       open={props.menuOpen}
       docked={false}
       width={200}
+      disableSwipeToOpen
     >
       <Subheader onTouchTap={props.handleMenuClick}>Locations</Subheader>
       <MenuItem onTouchTap={props.handleMenuClick}>
