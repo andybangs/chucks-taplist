@@ -1,62 +1,50 @@
 import React, { PropTypes } from 'react';
-import { Link } from 'react-router';
 import Drawer from 'material-ui/Drawer';
 import Subheader from 'material-ui/Subheader';
 import MenuItem from 'material-ui/MenuItem';
 
 const propTypes = {
   menuOpen: PropTypes.bool.isRequired,
+  fetchList: PropTypes.func.isRequired,
+  updateTitle: PropTypes.func.isRequired,
   handleMenuClick: PropTypes.func.isRequired,
 };
 
-function LocationMenu(props) {
-  return (
-    <Drawer
-      open={props.menuOpen}
-      docked={false}
-      width={200}
-      disableSwipeToOpen
-    >
-      <Subheader onTouchTap={props.handleMenuClick}>Locations</Subheader>
-      <MenuItem onTouchTap={props.handleMenuClick} style={styles.item}>
-        <Link to="/chucks85th" style={styles.link1}>Chuck's 85th</Link>
-      </MenuItem>
-      <MenuItem onTouchTap={props.handleMenuClick} style={styles.item}>
-        <Link to="/chuckscd" style={styles.link2}>Chuck's CD</Link>
-      </MenuItem>
-    </Drawer>
-  );
-}
+class LocationMenu extends React.Component {
+  constructor(props) {
+    super(props);
 
-/* eslint no-use-before-define: 0 */
-const styles = {
-  item: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    width: '100%',
-  },
-  link1: {
-    textDecoration: 'none',
-    color: 'rgba(0, 0, 0, 0.870588)',
-    cursor: 'pointer',
-    position: 'absolute',
-    top: 50,
-    left: 0,
-    paddingLeft: 16,
-    width: '100%',
-  },
-  link2: {
-    textDecoration: 'none',
-    color: 'rgba(0, 0, 0, 0.870588)',
-    cursor: 'pointer',
-    position: 'absolute',
-    top: 100,
-    left: 0,
-    paddingLeft: 16,
-    width: '100%',
-  },
-};
+    this.handleItemClick = this.handleItemClick.bind(this);
+  }
+
+  handleItemClick(location) {
+    window.history.pushState(null, null, location);
+    this.props.fetchList(location);
+    this.props.updateTitle(location);
+    this.props.handleMenuClick();
+  }
+
+  render() {
+    return (
+      <Drawer
+        open={this.props.menuOpen}
+        docked={false}
+        width={200}
+        disableSwipeToOpen
+      >
+        <Subheader>Locations</Subheader>
+        <MenuItem
+          primaryText="Chuck's 85th"
+          onTouchTap={() => this.handleItemClick('chucks85th')}
+        />
+        <MenuItem
+          primaryText="Chuck's CD"
+          onTouchTap={() => this.handleItemClick('chuckscd')}
+        />
+      </Drawer>
+    );
+  }
+}
 
 LocationMenu.propTypes = propTypes;
 

@@ -1,16 +1,15 @@
 import React, { PropTypes } from 'react';
 import AppBar from 'material-ui/AppBar';
-import { titles } from '../constants';
 
 const propTypes = {
-  location: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
   handleMenuClick: PropTypes.func.isRequired,
 };
 
 function Header(props) {
   return (
     <AppBar
-      title={titles[props.location]}
+      title={props.title}
       titleStyle={{ textAlign: 'center', paddingRight: 48 }}
       style={{ position: 'fixed' }}
       onLeftIconButtonTouchTap={props.handleMenuClick}

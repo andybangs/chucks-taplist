@@ -5,7 +5,7 @@ import Header from './Header';
 import FilterBar from './FilterBar';
 import TapTable from './TapTable';
 import LocationMenu from './LocationMenu';
-import { filters, filtersArr, orders, endpoints } from '../constants';
+import { filters, filtersArr, orders, endpoints, titles } from '../constants';
 
 const propTypes = {
   params: PropTypes.object.isRequired,
@@ -17,6 +17,7 @@ class TapList extends React.Component {
 
     this.state = {
       data: [],
+      title: titles[this.props.params.location],
       filter: filters.ALL,
       order: orders.TAP,
       menuOpen: false,
@@ -26,6 +27,7 @@ class TapList extends React.Component {
     this.fetchList = this.fetchList.bind(this);
     this.filterItem = this.filterItem.bind(this);
     this.compareItems = this.compareItems.bind(this);
+    this.updateTitle = this.updateTitle.bind(this);
     this.handleMenuClick = this.handleMenuClick.bind(this);
     this.handleFilterClick = this.handleFilterClick.bind(this);
     this.handleOrderClick = this.handleOrderClick.bind(this);
@@ -86,6 +88,10 @@ class TapList extends React.Component {
     }
   }
 
+  updateTitle(location) {
+    this.setState({ title: titles[location] });
+  }
+
   handleMenuClick() {
     this.setState({ menuOpen: !this.state.menuOpen });
   }
@@ -104,11 +110,13 @@ class TapList extends React.Component {
       return (
         <div>
           <Header
-            location={this.props.params.location}
+            title={this.state.title}
             handleMenuClick={this.handleMenuClick}
           />
           <LocationMenu
             menuOpen={this.state.menuOpen}
+            fetchList={this.fetchList}
+            updateTitle={this.updateTitle}
             handleMenuClick={this.handleMenuClick}
           />
           <FilterBar
@@ -132,7 +140,7 @@ class TapList extends React.Component {
     return (
       <div>
         <Header
-          location={this.props.params.location}
+          title={this.state.title}
           handleMenuClick={this.handleMenuClick}
         />
         <FilterBar
