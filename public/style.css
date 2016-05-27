@@ -24,14 +24,19 @@ button span {
   left: 0 !important;
 }
 
+table {
+  max-width: 1000px;
+  margin: auto;
+}
+
 th, td {
-  padding-left: 0 !important;
-  padding-right: 0 !important;
+  padding-left: 4px !important;
+  padding-right: 4px !important;
   font-family: 'Roboto Condensed', sans-serif !important;
 }
 
 tr {
-  height: 60px !important;
+  height: 64px !important;
 }
 
 td {

@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import Drawer from 'material-ui/Drawer';
 import Subheader from 'material-ui/Subheader';
+import Divider from 'material-ui/Divider';
 import MenuItem from 'material-ui/MenuItem';
 
 const propTypes = {
@@ -30,6 +31,7 @@ class LocationMenu extends React.Component {
         open={this.props.menuOpen}
         docked={false}
         width={200}
+        onRequestChange={this.props.handleMenuClick}
         disableSwipeToOpen
       >
         <Subheader>Locations</Subheader>
@@ -41,10 +43,22 @@ class LocationMenu extends React.Component {
           primaryText="Chuck's CD"
           onTouchTap={() => this.handleItemClick('chuckscd')}
         />
+        <Divider />
+        <MenuItem>
+          <a href="https://github.com/andybangs/tap-list" style={styles.link}>Source</a>
+        </MenuItem>
       </Drawer>
     );
   }
 }
+
+/* eslint no-use-before-define: 0 */
+const styles = {
+  link: {
+    textDecoration: 'none',
+    color: 'rgba(0, 0, 0, 0.870588)',
+  },
+};
 
 LocationMenu.propTypes = propTypes;
 
