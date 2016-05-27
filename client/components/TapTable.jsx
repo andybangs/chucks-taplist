@@ -18,21 +18,21 @@ function createItem(item) {
   const beerStyle = filterClass && validFilter ? filterClass : 'other';
 
   return (
-    <TableRow key={item.tap}>
+    <TableRow key={item.tap} style={Object.assign({}, colors[beerStyle], styles.tr)}>
       <TableRowColumn
-        style={Object.assign({}, styles[beerStyle], styles.tap)}
+        style={Object.assign({}, styles.tap, styles.td)}
       >{item.tap}</TableRowColumn>
       <TableRowColumn
-        style={Object.assign({}, styles[beerStyle], styles.brewery)}
+        style={Object.assign({}, styles.brewery, styles.td)}
       >{item.brewery}</TableRowColumn>
       <TableRowColumn
-        style={Object.assign({}, styles[beerStyle], styles.beer)}
+        style={Object.assign({}, styles.beer, styles.td)}
       >{item.beer}</TableRowColumn>
       <TableRowColumn
-        style={Object.assign({}, styles[beerStyle], styles.pint)}
+        style={Object.assign({}, styles.pint, styles.td)}
       >{item.pint}</TableRowColumn>
       <TableRowColumn
-        style={Object.assign({}, styles[beerStyle], styles.abv)}
+        style={Object.assign({}, styles.abv, styles.td)}
       >{item.abv || 0}</TableRowColumn>
     </TableRow>
   );
@@ -59,7 +59,7 @@ function TapTable(props) {
       <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
         <TableRow>
           <TableHeaderColumn
-            style={Object.assign({}, headerStyle(order, orders.TAP), styles.tap)}
+            style={Object.assign({}, headerStyle(order, orders.TAP), styles.tap, styles.th)}
             onTouchTap={() => handleOrderClick(orders.TAP)}
           >
             <FlatButton
@@ -69,7 +69,7 @@ function TapTable(props) {
             >#</FlatButton>
           </TableHeaderColumn>
           <TableHeaderColumn
-            style={Object.assign({}, headerStyle(order, orders.BREWERY), styles.brewery)}
+            style={Object.assign({}, headerStyle(order, orders.BREWERY), styles.brewery, styles.th)}
             onTouchTap={() => handleOrderClick(orders.BREWERY)}
           >
             <FlatButton
@@ -79,7 +79,7 @@ function TapTable(props) {
             >brewery</FlatButton>
           </TableHeaderColumn>
           <TableHeaderColumn
-            style={Object.assign({}, headerStyle(order, orders.BEER), styles.beer)}
+            style={Object.assign({}, headerStyle(order, orders.BEER), styles.beer, styles.th)}
             onTouchTap={() => handleOrderClick(orders.BEER)}
           >
             <FlatButton
@@ -89,7 +89,7 @@ function TapTable(props) {
             >beer</FlatButton>
           </TableHeaderColumn>
           <TableHeaderColumn
-            style={Object.assign({}, headerStyle(order, orders.PRICE), styles.pint)}
+            style={Object.assign({}, headerStyle(order, orders.PRICE), styles.pint, styles.th)}
             onTouchTap={() => handleOrderClick(orders.PRICE)}
           >
             <FlatButton
@@ -99,7 +99,7 @@ function TapTable(props) {
             >pint</FlatButton>
           </TableHeaderColumn>
           <TableHeaderColumn
-            style={Object.assign({}, headerStyle(order, orders.ABV), styles.abv)}
+            style={Object.assign({}, headerStyle(order, orders.ABV), styles.abv, styles.th)}
             onTouchTap={() => handleOrderClick(orders.ABV)}
           >
             <FlatButton
@@ -121,24 +121,40 @@ function TapTable(props) {
 const styles = {
   table: {
     width: '100%',
+    maxWidth: 1000,
+    margin: 'auto',
+  },
+  th: {
+    fontFamily: 'Roboto Condensed, sans-serif',
+    paddingLeft: 2,
+    paddingRight: 2,
+  },
+  tr: {
+    height: 64,
+  },
+  td: {
+    fontFamily: 'Roboto Condensed, sans-serif',
+    paddingLeft: 2,
+    paddingRight: 2,
+    fontSize: '1em',
   },
   selectedHeader: {
     fontSize: '1.1em',
     fontWeight: 'bold',
     color: '#00BCD4',
-    cursor: 'pointer',
   },
   defaultHeader: {
     fontSize: '0.9em',
     fontWeight: 'bold',
-    cursor: 'pointer',
   },
   headerBtnLeft: {
     textAlign: 'left',
+    minWidth: '100%',
     paddingLeft: 3,
   },
   headerBtnCenter: {
     textAlign: 'center',
+    minWidth: '100%',
   },
   tap: {
     width: '13%',
@@ -162,6 +178,9 @@ const styles = {
     width: '13%',
     textAlign: 'center',
   },
+};
+
+const colors = {
   ipa: {
     color: '#388E3C',
   },

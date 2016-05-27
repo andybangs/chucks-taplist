@@ -12,15 +12,15 @@ function FilterBar(props) {
   const hoverColor = window.innerWidth < 768 ? '#FFF' : '';
 
   return (
-    <div style={styles.filterBtnsCont}>
+    <div style={styles.container}>
       {filtersArr.map(val =>
         <FlatButton
           key={val}
           label={val}
           secondary={props.filter === val}
           onTouchTap={props.handleFilterClick}
-          className="filterBtn"
-          style={styles.filterBtn}
+          style={styles.button}
+          labelStyle={styles.label}
           backgroundColor={'#FFF'}
           hoverColor={hoverColor}
         />
@@ -31,7 +31,7 @@ function FilterBar(props) {
 
 /* eslint no-use-before-define: 0 */
 const styles = {
-  filterBtnsCont: {
+  container: {
     width: '100%',
     boxSizing: 'border-box',
     boxShadow: '0px 1px 2px grey',
@@ -42,9 +42,16 @@ const styles = {
     backgroundColor: '#FFF',
     zIndex: 1000,
   },
-  filterBtn: {
+  button: {
     flex: 1,
     minWidth: 0,
+  },
+  label: {
+    padding: '0 2%',
+    position: 'absolute',
+    width: '100%',
+    top: '0',
+    left: '0',
   },
 };
 
