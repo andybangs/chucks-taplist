@@ -50,8 +50,8 @@ const styles = {
     padding: '0 2%',
     position: 'absolute',
     width: '100%',
-    top: '0',
-    left: '0',
+    top: 0,
+    left: 0,
   },
 };
 

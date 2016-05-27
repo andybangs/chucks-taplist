@@ -25,6 +25,12 @@ module.exports = function fetchList(url) {
           returnObj.classes = result.class.trim().split(' ');
           returnObj.abv = isNaN(result.abv) ? 0 : result.abv;
 
+          const slashIndex = result.brewery.indexOf('/');
+          if (slashIndex !== -1) {
+            returnObj.brewery =
+              `${result.brewery.slice(0, slashIndex)} / ${result.brewery.slice(slashIndex + 1)}`;
+          }
+
           return returnObj;
         });
 
