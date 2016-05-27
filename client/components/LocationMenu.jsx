@@ -44,21 +44,15 @@ class LocationMenu extends React.Component {
           onTouchTap={() => this.handleItemClick('chuckscd')}
         />
         <Divider />
-        <MenuItem>
-          <a href="https://github.com/andybangs/tap-list" style={styles.link}>Source</a>
-        </MenuItem>
+        <MenuItem
+          primaryText="Source"
+          linkButton
+          href="https://github.com/andybangs/tap-list"
+        />
       </Drawer>
     );
   }
 }
-
-/* eslint no-use-before-define: 0 */
-const styles = {
-  link: {
-    textDecoration: 'none',
-    color: 'rgba(0, 0, 0, 0.870588)',
-  },
-};
 
 LocationMenu.propTypes = propTypes;
 
