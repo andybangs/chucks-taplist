@@ -4,10 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "prestart": "webpack",
+    "prestart": "node_modules/.bin/webpack",
     "start": "node server.js",
-    "dev": "webpack -w | nodemon server.js",
-    "lint": "eslint **.js"
+    "dev": "node_modules/.bin/webpack -w | node_modules/.bin/nodemon server.js",
+    "lint": "node_modules/.bin/eslint --ignore-pattern 'public/bundle.js' ."
   },
   "author": "Andy Bangs <andrew.yuta@gmail.com>",
   "license": "MIT",
