@@ -17,4 +17,8 @@ router.get('/cd/beers', (req, res) => {
     });
 });
 
+router.get('*', (req, res) => {
+  res.status(404).end();
+});
+
 module.exports = router;

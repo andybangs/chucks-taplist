@@ -7,7 +7,8 @@
     "prestart": "node_modules/.bin/webpack",
     "start": "node server.js",
     "dev": "node_modules/.bin/webpack -w | node_modules/.bin/nodemon server.js",
-    "lint": "node_modules/.bin/eslint --ignore-pattern 'public/bundle.js' ."
+    "lint": "node_modules/.bin/eslint --ignore-pattern 'public/bundle.js' .",
+    "test": "node_modules/.bin/mocha --use_strict --reporter spec"
   },
   "author": "Andy Bangs <andrew.yuta@gmail.com>",
   "license": "MIT",
@@ -28,12 +29,15 @@
     "x-ray": "^2.3.0"
   },
   "devDependencies": {
+    "chai": "^3.5.0",
     "eslint": "^2.9.0",
     "eslint-config-airbnb": "^8.0.0",
     "eslint-plugin-import": "^1.6.1",
     "eslint-plugin-jsx-a11y": "^1.0.4",
     "eslint-plugin-react": "^5.0.1",
-    "nodemon": "^1.9.2"
+    "mocha": "^2.5.3",
+    "nodemon": "^1.9.2",
+    "supertest": "^1.2.0"
   },
   "engines": {
     "node": "4.4.2"
