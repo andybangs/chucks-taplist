@@ -3,7 +3,7 @@ node_modules/
 npm-debug.log
 
 # Compiled JS
-public/bundle.js
+server/public/bundle.js
 
 # OSX
 .DS_Store

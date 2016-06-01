@@ -1,6 +1,6 @@
 const Xray = require('x-ray');
 
-module.exports = function fetchList(url) {
+module.exports = function fetchBeers(url) {
   return new Promise((resolve, reject) => {
     const xray = new Xray();
 

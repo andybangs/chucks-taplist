@@ -3,7 +3,7 @@ const webpack = require('webpack');
 module.exports = {
   entry: './client/index.jsx',
   output: {
-    filename: 'public/bundle.js',
+    filename: 'server/public/bundle.js',
   },
   resolve: {
     extensions: ['', '.js', '.jsx'],

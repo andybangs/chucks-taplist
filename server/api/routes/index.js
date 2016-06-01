@@ -1,17 +1,17 @@
 /* eslint new-cap: 0 */
 
 const router = require('express').Router();
-const fetchChucksList = require('../fetchChucksList');
+const fetchBeers = require('../fetchBeers');
 
 router.get('/85th/beers', (req, res) => {
-  fetchChucksList('http://chucks85th.com/draft')
+  fetchBeers('http://chucks85th.com/draft')
     .then((json) => {
       res.send(json);
     });
 });
 
 router.get('/cd/beers', (req, res) => {
-  fetchChucksList('http://cd.chucks85th.com/draft')
+  fetchBeers('http://cd.chucks85th.com/draft')
     .then((json) => {
       res.send(json);
     });
