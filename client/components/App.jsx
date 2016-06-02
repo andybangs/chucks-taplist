@@ -121,7 +121,6 @@ class TapList extends React.Component {
           />
           <FilterBar
             filter={this.state.filter}
-            filterItem={this.filterItem}
             handleFilterClick={this.handleFilterClick}
           />
           <div style={styles.body}>

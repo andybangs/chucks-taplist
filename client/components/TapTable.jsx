@@ -52,7 +52,7 @@ function TapTable(props) {
     .filter(filterItem)
     .sort(compareItems)
     .map(createItem);
-  const hoverColor = window.innerWidth < 768 ? '#FFF' : '';
+  // const hoverColor = window.innerWidth < 768 ? '#FFF' : '';
 
   return (
     <Table selectable={false} style={styles.table}>
@@ -63,7 +63,6 @@ function TapTable(props) {
             onTouchTap={() => handleOrderClick(orders.TAP)}
           >
             <FlatButton
-              hoverColor={hoverColor}
               secondary={isSelected(order, orders.TAP)}
               style={styles.headerBtnCenter}
             >#</FlatButton>
@@ -73,7 +72,6 @@ function TapTable(props) {
             onTouchTap={() => handleOrderClick(orders.BREWERY)}
           >
             <FlatButton
-              hoverColor={hoverColor}
               secondary={isSelected(order, orders.BREWERY)}
               style={styles.headerBtnLeft}
             >brewery</FlatButton>
@@ -83,7 +81,6 @@ function TapTable(props) {
             onTouchTap={() => handleOrderClick(orders.BEER)}
           >
             <FlatButton
-              hoverColor={hoverColor}
               secondary={isSelected(order, orders.BEER)}
               style={styles.headerBtnLeft}
             >beer</FlatButton>
@@ -93,7 +90,6 @@ function TapTable(props) {
             onTouchTap={() => handleOrderClick(orders.PRICE)}
           >
             <FlatButton
-              hoverColor={hoverColor}
               secondary={isSelected(order, orders.PRICE)}
               style={styles.headerBtnCenter}
             >pint</FlatButton>
@@ -103,7 +99,6 @@ function TapTable(props) {
             onTouchTap={() => handleOrderClick(orders.ABV)}
           >
             <FlatButton
-              hoverColor={hoverColor}
               secondary={isSelected(order, orders.ABV)}
               style={styles.headerBtnCenter}
             >abv</FlatButton>

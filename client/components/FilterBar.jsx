@@ -4,12 +4,11 @@ import { filtersArr } from '../constants';
 
 const propTypes = {
   filter: PropTypes.string.isRequired,
-  filterItem: PropTypes.func.isRequired,
   handleFilterClick: PropTypes.func.isRequired,
 };
 
 function FilterBar(props) {
-  const hoverColor = window.innerWidth < 768 ? '#FFF' : '';
+  // const hoverColor = window.innerWidth < 768 ? '#FFF' : '';
 
   return (
     <div style={styles.container}>
@@ -22,7 +21,6 @@ function FilterBar(props) {
           style={styles.button}
           labelStyle={styles.label}
           backgroundColor={'#FFF'}
-          hoverColor={hoverColor}
         />
       )}
     </div>

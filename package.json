@@ -4,11 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "prestart": "node_modules/.bin/webpack",
+    "prestart": "webpack",
     "start": "node server/app.js",
-    "dev": "node_modules/.bin/webpack -w | node_modules/.bin/nodemon server/app.js",
-    "lint": "node_modules/.bin/eslint --ignore-pattern 'bundle.js' .",
-    "test-server": "node_modules/.bin/mocha $(find server -name '*.test.js') --use_strict"
+    "dev": "webpack -w | nodemon server/app.js",
+    "lint": "eslint --ext .jsx --ext .js .",
+    "test-server": "mocha './server/**/*.spec.js' --use_strict",
+    "test-client": "mocha './client/**/*.spec.js' --compilers js:babel-core/register",
+    "test": "npm run lint && npm run test-server && npm run test-client"
   },
   "author": "Andy Bangs <andrew.yuta@gmail.com>",
   "license": "MIT",
@@ -35,8 +37,10 @@
     "eslint-plugin-jsx-a11y": "^1.0.4",
     "eslint-plugin-react": "^5.0.1",
     "expect": "^1.20.1",
+    "expect-jsx": "^2.5.1",
     "mocha": "^2.5.3",
     "nodemon": "^1.9.2",
+    "react-addons-test-utils": "^15.1.0",
     "supertest": "^1.2.0"
   },
   "engines": {
